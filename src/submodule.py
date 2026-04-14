@@ -1,11 +1,4 @@
-import pygame
-pygame.init()
+import pygame as pg
 
-def display_text():
-    print("hello")
+pg.init()
 
-def main():
-    pass
-
-if __name__ == "__main__":
-    main()
