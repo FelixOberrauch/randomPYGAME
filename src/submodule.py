@@ -1,0 +1,11 @@
+import pygame
+pygame.init()
+
+def display_text():
+    print("hello")
+
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()
