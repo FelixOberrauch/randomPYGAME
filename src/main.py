@@ -6,6 +6,7 @@ pg.init()
 HEIGHT, WIDTH = 1920 ,1080
 screen = pg.display.set_mode((WIDTH, HEIGHT))
 clock = pg.time.Clock()
+background = pg.image.load("assets/Background.jpg")
 
 #___Collors___
 white = (255, 255, 255)
@@ -21,9 +22,11 @@ while running:
         if event.type == pg.QUIT:
             running = False
     #___RENDER___
-    pg.draw.rect(screen, (255,255,0), pg.Rect(50,50,5,50))
+    screen.fill(background)
 
-    screen.fill(white)
+    pg.draw.rect(screen, (255,255,0), pg.Rect(100,100,100,50))
+
+    
 
 
     pg.display.flip()
