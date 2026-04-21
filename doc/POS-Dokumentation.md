@@ -1,122 +1,102 @@
 # Tower Defense
 
-
 Projektgruppe: Shane Lund Grell, Felix Oberrauch
 Klasse: 1aHIF
 Jahr: 2025/26
- 
-
- 
- 
-Fotos mit Namen 
-
- 
- 
-
- 
- 
-Betreuer: Mario Bader 
+Fotos mit Namen
+Betreuer: Mario Bader
 
 Kurzbeschreibung:  
-Unser Spiel ist ein Tower Defense Game, indem es Attackers und Defenders gibt.
- Der Spieler ist ein Defender der mit Figuren oder sogennanten "Towers" gegen eine Armee von Zombies ankämpft.
-
+Unser Spiel ist ein Tower Defense Game, indem es Attackers und Defenders gibt. Der
+Spieler ist ein Defender der mit Figuren oder sogennanten "Towers" gegen eine
+Armee von Zombies ankämpft.
 
 ## Collage mit mindestens zwei Screenshots  
 
-  
+## Inhaltsverzeichnis
 
-## Inhaltsverzeichnis 
-
- 
-
-
-  
-## Projektzeitplan 
+## Projektzeitplan
 
 | Datum     | Aufgabe                              | Bearbeiter    | Status (%)|
 |------------------------------------------------------------------------------|
 | 13.4.2026 | Github eingerichtet                  | Felix         | 100%      |
 |------------------------------------------------------------------------------|
-| 14.4.2026 | Grundstrucktur des Spieles aufgebaut | Felix, Schane | 50%.      |
+| 14.4.2026 | Grundstrucktur des Spieles aufgebaut | Felix, Shane  | 50%.      |
+|------------------------------------------------------------------------------|
+| 20.4.2026 | Hintergrund + Pfad für die Attackers | Shane, Felix  | 95%       |
+|           | angefangen.                          |               |           |
+|------------------------------------------------------------------------------|
+| 21.4.2026 | Pfad für Attackers beendet und einen | Felix, Shane  | 100%      |
+|           | einen Attacker diesem folgen lassen. |               |           |
+|------------------------------------------------------------------------------|
+| 22.4.2026 | Steuerung + ersrte(r) Tower(s)       | Felix         | 80%       |
+|------------------------------------------------------------------------------|
+| 24.4.26   | Unerledigte sachen der woche beenden | Shane, Felix  | 100%      |
 |------------------------------------------------------------------------------|
 
-
-## Leistungsverzeichnis (Kurzbeschreibung, Funktionsumfang, Skizzen) 
+## Leistungsverzeichnis (Kurzbeschreibung, Funktionsumfang, Skizzen)
 
 ### 2.1. Kurzbeschreibung  
 
-Eine Armee von Zombies greift die Menschheit an. Der Spieler muss mit hilfe der im zur
-vervügung stehenden "Towers" diese abwehren.
-### 2.2. Skizzen 
+Eine Armee von Zombies greift die Menschheit an. Der Spieler muss mit hilfe der im
+zur vervügung stehenden "Towers" diese abwehren.
 
-Spielprinzip genau erklären 
+### 2.2. Skizzen
 
-### 2.3. Funktionsumfang 
+Spielprinzip genau erklären
 
-|
+### 2.3. Funktionsumfang
+
+| Maus | Towers plazieren                                                      |
 |------------------------------------------------------------------------------|
 
+## 4 Realisierung
 
+### 4.1 Interner Programmaufbau (Programmlogik)
 
-## 4 Realisierung 
+Ablaufdiagramm
 
-### 4.1 Interner Programmaufbau (Programmlogik) 
+Beschreibung wie wird das Programm aufgebaut und arbeiten
 
-Ablaufdiagramm 
+### 4.2 Umsetzungsdetails
 
-Beschreibung wie wird das Programm aufgebaut und arbeiten 
+Detaillierte Beschreibung der Umsetzung mit möglichen Fehlern und Lösungen
 
-### 4.2 Umsetzungsdetails 
+### 4.3 Ergebnisse, Interpretation (Tests)
 
-Detaillierte Beschreibung der Umsetzung mit möglichen Fehlern und Lösungen 
+Wie läuft das Programm?
+Welche Schwachstellen hat es?   (z.B. Programmlauf nicht flüssig)
 
-### 4.3 Ergebnisse, Interpretation (Tests) 
+## 5 Anleitung
 
-Wie läuft das Programm? 
-
-Welche Schwachstellen hat es?   (z.B. Programmlauf nicht flüssig) 
-
-  
-
-## 5 Anleitung 
-
-### 5.1 Installationsanleitung 
+### 5.1 Installationsanleitung
 
 Was muss alles installiert werden  
 
-### 5.2 Bedienungsanleitung 
+### 5.2 Bedienungsanleitung
 
-Muss so genau sein, dass auch ein neuer, unbedarfter Benutzer damit zurechtkommt.   
+Muss so genau sein, dass auch ein neuer, unbedarfter Benutzer damit zurechtkommt.
 
-    Bekannte Bugs, Probleme 
+## 6 Bekannte Bugs, Probleme
 
-Welche Bugs liegen noch vor? Warum konnten sie nicht behoben werden? 
-
+Welche Bugs liegen noch vor? Warum konnten sie nicht behoben werden?
   
+## 7 Erweiterungsmöglichkeiten
 
-    Erweiterungsmöglichkeiten 
+Wenn ihr noch Zeit hättet, was würdet ihr verbessern oder erweitern?
 
-Wenn ihr noch Zeit hättet, was würdet ihr verbessern oder erweitern? 
+## Info
 
-  
+* Der Zeitplan ist wöchentlich auszufüllen!
 
-    Info 
+* Die Titelseite ist am Projektende auszudrucken ( „Hall of Fame“ „Hall of Shame“ J)
+Sie muss auf einer Seite Platz finden.
 
- 
+* Endabgabe: dieses Dokument ausgedruckt, Projektverzeichnis per Teams abgeben
 
-    Der Zeitplan ist wöchentlich auszufüllen! 
+* Projektbenotung: Neben dem Endprodukt werden vor allem der Projektfortgang, die
+Arbeitsweise und die Termintreue benotet (keine Projekte, die in der letzten Nacht
+fertiggestellt werden!) Der Code soll möglichst übersichtlich gehalten werden
+(Einsatz von Funktionen und Klassen).
 
-    Die Titelseite ist am Projektende auszudrucken ( „Hall of Fame“ „Hall of Shame“ J ) 
-    Sie muss auf einer Seite Platz finden. 
-
-    Endabgabe: dieses Dokument ausgedruckt, Projektverzeichnis per Teams abgeben 
-
-    Projektbenotung: Neben dem Endprodukt werden vor allem der Projektfortgang, die Arbeitsweise und die Termintreue benotet (keine Projekte, die in der letzten Nacht fertiggestellt werden!) Der Code soll möglichst übersichtlich gehalten werden (Einsatz von Funktionen und Klassen). 
-     
-
-Viel Spaß und happy coding! 
-
- 
-
- 
+Viel Spaß und happy coding!
