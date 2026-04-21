@@ -17,20 +17,19 @@ Armee von Zombies ankämpft.
 
 ## Projektzeitplan
 
-| Datum     | Aufgabe                              | Bearbeiter    | Status (%)|
-
+|: Datum     | Aufgabe                              | Bearbeiter    | Status (%)|
 |:------------------------------------------------------------------------------|
-| 13.4.2026 | Github eingerichtet                  | Felix         | 100%      |
+|: 13.4.2026 | Github eingerichtet                  | Felix         | 100%      |
 |:------------------------------------------------------------------------------|
-| 14.4.2026 | Grundstrucktur des Spieles aufgebaut | Felix, Shane  | 50%.      |
+|: 14.4.2026 | Grundstrucktur des Spieles aufgebaut | Felix, Shane  | 50%.      |
 |:------------------------------------------------------------------------------|
-| 20.4.2026 | Hintergrund + Pfad für die Attackers | Shane, Felix  | 95%       |
-|           | angefangen.                          |               |           |
+|: 20.4.2026 | Hintergrund + Pfad für die Attackers | Shane, Felix  | 95%       |
+|:          | angefangen.                          |               |           |
 |:------------------------------------------------------------------------------|
-| 21.4.2026 | Pfad für Attackers beendet und einen | Felix, Shane  | 100%      |
-|           | einen Attacker diesem folgen lassen. |               |           |
+|: 21.4.2026 | Pfad für Attackers beendet und einen | Felix, Shane  | 100%      |
+|:           | einen Attacker diesem folgen lassen. |               |           |
 |:------------------------------------------------------------------------------|
-| 22.4.2026 | Steuerung + ersrte(r) Tower(s)       | Felix         | 80%       |
+|: 22.4.2026 | Steuerung + ersrte(r) Tower(s)       | Felix         | 80%       |
 |:------------------------------------------------------------------------------|
 
 ## Leistungsverzeichnis (Kurzbeschreibung, Funktionsumfang, Skizzen)
