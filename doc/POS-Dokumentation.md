@@ -17,20 +17,22 @@ Armee von Zombies ankämpft.
 
 ## Projektzeitplan
 
-|: Datum     | Aufgabe                              | Bearbeiter    | Status (%)|
-|:------------------------------------------------------------------------------|
-|: 13.4.2026 | Github eingerichtet                  | Felix         | 100%      |
-|:------------------------------------------------------------------------------|
-|: 14.4.2026 | Grundstrucktur des Spieles aufgebaut | Felix, Shane  | 50%.      |
-|:------------------------------------------------------------------------------|
-|: 20.4.2026 | Hintergrund + Pfad für die Attackers | Shane, Felix  | 95%       |
-|:          | angefangen.                          |               |           |
-|:------------------------------------------------------------------------------|
-|: 21.4.2026 | Pfad für Attackers beendet und einen | Felix, Shane  | 100%      |
-|:           | einen Attacker diesem folgen lassen. |               |           |
-|:------------------------------------------------------------------------------|
-|: 22.4.2026 | Steuerung + ersrte(r) Tower(s)       | Felix         | 80%       |
-|:------------------------------------------------------------------------------|
+| Datum     | Aufgabe                              | Bearbeiter    | Status (%)|
+|------------------------------------------------------------------------------|
+| 13.4.2026 | Github eingerichtet                  | Felix         | 100%      |
+|------------------------------------------------------------------------------|
+| 14.4.2026 | Grundstrucktur des Spieles aufgebaut | Felix, Shane  | 50%.      |
+|------------------------------------------------------------------------------|
+| 20.4.2026 | Hintergrund + Pfad für die Attackers | Shane, Felix  | 95%       |
+|           | angefangen.                          |               |           |
+|------------------------------------------------------------------------------|
+| 21.4.2026 | Pfad für Attackers beendet und einen | Felix, Shane  | 100%      |
+|           | einen Attacker diesem folgen lassen. |               |           |
+|------------------------------------------------------------------------------|
+| 22.4.2026 | Steuerung + ersrte(r) Tower(s)       | Felix         | 80%       |
+|------------------------------------------------------------------------------|
+| 24.4.26   | Unerledigte sachen der woche beenden | Shane, Felix  | 100%      |
+|------------------------------------------------------------------------------|
 
 ## Leistungsverzeichnis (Kurzbeschreibung, Funktionsumfang, Skizzen)
 
@@ -87,8 +89,8 @@ Wenn ihr noch Zeit hättet, was würdet ihr verbessern oder erweitern?
 
 * Der Zeitplan ist wöchentlich auszufüllen!
 
-* Die Titelseite ist am Projektende auszudrucken ( „Hall of Fame“ „Hall of Shame“ J )
-   Sie muss auf einer Seite Platz finden.
+* Die Titelseite ist am Projektende auszudrucken ( „Hall of Fame“ „Hall of Shame“ J)
+Sie muss auf einer Seite Platz finden.
 
 * Endabgabe: dieses Dokument ausgedruckt, Projektverzeichnis per Teams abgeben
 
