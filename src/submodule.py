@@ -27,3 +27,4 @@ class Follower:
 
     def draw(self, surface):
         pg.draw.circle(surface, (255, 0, 0), (int(self.pos.x), int(self.pos.y)), 10)
+
