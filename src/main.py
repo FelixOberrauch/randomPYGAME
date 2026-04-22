@@ -1,15 +1,22 @@
 import pygame as pg
 import os
+from pygame.draw import circle
 from submodule import *
+from Defender import *
 
 # ____SETUP____
 pg.init()
 WIDTH,HEIGHT =  1536,1024
 screen = pg.display.set_mode((WIDTH, HEIGHT))
+load_defender_assets()
+load_bullet_assets()
 clock = pg.time.Clock()
 script_dir = os.path.dirname(__file__)
 bg_path = os.path.join(script_dir, "assets", "Background.jpg")
 background = pg.image.load(bg_path)
+CIRCLE_ORIGIN = pg.math.Vector2(1500, 30)
+circle_def = CIRCLE_ORIGIN.copy()
+
 # ____coordinates____Road____Attackers____
 ROAD_PATH = [
     (1293,1024),
@@ -49,6 +56,7 @@ ROAD_PATH = [
     (1175,150),
     (1205,50)
 ]
+Defenders = []
 
 # ___Colours___
 white = (255, 255, 255)
@@ -56,52 +64,72 @@ red = (255, 0, 0)
 black = (0,0,0)
 blue = (0, 0, 255)
 green = (0, 255, 0)
-'''____Attackers____Path____
-Dieser class "Attacker" macht, dass die Attackers den Path folgen der mit ROAD_PATH
- vorgegeben ist'''
-class Attacker:
-    '''in def __init__ legen wir an, dass der Attacker immer weiß, wo er gerade ist,
-    und wo er hin soll. Wir legen die Start Position vom Attacker als Vektor an, dass
-    man leichter damit rechnen kann und legen auch die geschwindigkeit vom Attacker an'''
-    def __init__(self, path):
-        self.path = path
-        self.current_point_idx = 0
-        self.pos = pg.Vector2(path[0])
-        self.speed = 1
-    ''''''
-    def update(self):
-        if self.current_point_idx < len(self.path):
-            target = pg.Vector2(self.path[self.current_point_idx])
-            direction = target - self.pos  # Vector pointing to target
-            
-            # Check if we are "close enough" to the target
-            if direction.length() < self.speed:
-                self.pos = target  # Snap to target
-                self.current_point_idx += 1  # Move to next point
-            else:
-                # Normalize makes the vector 1 unit long, then multiply by speed
-                direction = direction.normalize()
-                self.pos += direction * self.speed
+brown = (181, 122, 0)
 
-    def draw(self, surface):
-        pg.draw.circle(surface, (255, 0, 0), (int(self.pos.x), int(self.pos.y)), 10)
 
 # --- INSTANTIATE ---
-# Create one follower object before the loop starts
+drag_offset = pg.math.Vector2(0,0)
 attacker = Attacker(ROAD_PATH)
+bullets = []
+last_shot_time = 0
+rect_gui = pg.Rect(1468,0,200,1024)
+dragging = False
 running = True
 while running:
     # ___EVENTS___
     for event in pg.event.get():
         if event.type == pg.QUIT:
             running = False
+        elif event.type == pg.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                mouse_pos = pg.math.Vector2(event.pos)
+                if rect_gui.collidepoint(event.pos) and (mouse_pos - circle_def).length() <= 40:
+                    dragging = True
+                    drag_offset = mouse_pos - circle_def
+        
+        elif event.type == pg.MOUSEBUTTONUP:
+            if event.button == 1 and dragging:
+                if not rect_gui.collidepoint(pg.mouse.get_pos()):
+                    Defenders.append(circle_def.copy())
+                dragging = False
+                circle_def = CIRCLE_ORIGIN.copy()
     
     # ___LOGIC___
-    attacker.update() # This moves the follower toward the next point
+    attacker.update()
     
+    # Update bullets
+    for bullet in bullets[:]:
+        bullet.update()
+        if not bullet.active:
+            bullets.remove(bullet)
+            
+    # Defenders shoot
+    current_time = pg.time.get_ticks()
+    if current_time - last_shot_time > 500: # Every 0.5 seconds
+        for def_pos in Defenders:
+            if attacker.alive and (def_pos - attacker.pos).length() < 100:
+                bullets.append(Bullet(def_pos, attacker))
+        last_shot_time = current_time
+
+    if not attacker.alive:
+        # For testing: respawn attacker when it reaches the end or dies
+        attacker = Attacker(ROAD_PATH)
+
+    if dragging:
+        circle_def.x = pg.mouse.get_pos()[0] - drag_offset.x
+        circle_def.y = pg.mouse.get_pos()[1] - drag_offset.y
     # ___RENDER___
     screen.blit(background, (0, 0))
-
+    # Draw placed defenders
+    for def_pos in Defenders:
+        draw_range(screen, def_pos)
+        Defend_1(screen, red, def_pos)
+    
+    # Draw bullets
+    for bullet in bullets:
+        bullet.draw(screen)
+        
+    Defendgui(1468, 0, 200, 1024, screen, brown, red, circle_def)
     # Draw the path lines and nodes
     if len(ROAD_PATH) > 1:
         pg.draw.lines(screen, green, False, ROAD_PATH, 3) 
@@ -111,7 +139,7 @@ while running:
     # Draw the follower
     attacker.draw(screen)
 
-    pg.display.flip()
+    pg.display.update()
     clock.tick(60)
 
 pg.quit()
