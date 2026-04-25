@@ -1,6 +1,7 @@
 import pygame as pg
 import os
 
+
 # Placeholder for bullet texture
 bullet_img = None
 
@@ -40,13 +41,13 @@ class Follower:
         pg.draw.circle(surface, (255, 0, 0), (int(self.pos.x), int(self.pos.y)), 10)
 
 class Attacker:
-    def __init__(self, path):
+    def __init__(self, path, health=20):
         self.path = path
         self.current_point_idx = 0
         self.pos = pg.Vector2(path[0])
         self.speed = 1.5
-        self.health = 20
-        self.max_health = 20
+        self.health = health
+        self.max_health = health
         self.alive = True
         self.radius = 12
 
@@ -113,3 +114,7 @@ class Bullet:
                 pg.draw.rect(bullet_surf, (0, 255, 0), (0, 0, 12, 6))
                 rotated_surf = pg.transform.rotate(bullet_surf, angle)
                 surface.blit(rotated_surf, rotated_surf.get_rect(center=(int(self.pos.x), int(self.pos.y))))
+# Print rounds + health
+def draw_text(text, x,y,font,screen,color=(255,255,255)):
+    text_surface = font.render(text, True, color)
+    screen.blit(text_surface, (x, y))

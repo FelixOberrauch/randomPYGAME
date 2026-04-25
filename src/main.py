@@ -68,10 +68,15 @@ blue = (0, 0, 255)
 green = (0, 255, 0)
 brown = (181, 122, 0)
 
-
-# --- INSTANTIATE ---
+# ___INSTANTIATE___
+health_pl = 200
+attackers = []
+spawn_queue = 0
+current_round = 1
+current_attacker_health = 20
+last_spawn_time = 0
+spawn_delay = 100  # 100 milliseconds between spawns
 drag_offset = pg.math.Vector2(0,0)
-attacker = Attacker(ROAD_PATH)
 bullets = []
 last_shot_time = 0
 rect_gui = pg.Rect(1468,0,200,1024)
@@ -80,6 +85,12 @@ running = True
 zombie_walking_path = os.path.join(script_dir, "assets", "zombie_walking.png")
 zombie_walking_image = pg.image.load(zombie_walking_path).convert_alpha()
 zombie_walking_image = pg.transform.scale(zombie_walking_image, (80, 80))
+
+# ___Text___
+font = pg.font.SysFont('arial', 24)
+rounds = f"Round: {current_round}"
+health_p = f"Health: {health_pl}"
+
 while running:
     # ___EVENTS___
     for event in pg.event.get():
@@ -91,7 +102,6 @@ while running:
                 if rect_gui.collidepoint(event.pos) and (mouse_pos - circle_def).length() <= 40:
                     dragging = True
                     drag_offset = mouse_pos - circle_def
-        
         elif event.type == pg.MOUSEBUTTONUP:
             if event.button == 1 and dragging:
                 if not rect_gui.collidepoint(pg.mouse.get_pos()):
@@ -100,7 +110,19 @@ while running:
                 circle_def = CIRCLE_ORIGIN.copy()
     
     # ___LOGIC___
-    attacker.update()
+    # Spawn attackers from queue
+    if spawn_queue > 0:
+        current_time = pg.time.get_ticks()
+        if current_time - last_spawn_time > spawn_delay:
+            attackers.append(Attacker(ROAD_PATH, health=current_attacker_health))
+            spawn_queue -= 1
+            last_spawn_time = current_time
+
+    # Update attackers
+    for attacker in attackers[:]:
+        attacker.update()
+        if not attacker.alive:
+            attackers.remove(attacker)
     
     # Update bullets
     for bullet in bullets[:]:
@@ -112,13 +134,32 @@ while running:
     current_time = pg.time.get_ticks()
     if current_time - last_shot_time > 500: # Every 0.5 seconds
         for def_pos in Defenders:
-            if attacker.alive and (def_pos - attacker.pos).length() < 100:
-                bullets.append(Bullet(def_pos, attacker))
+            # Find a target in range
+            target = None
+            for enemy in attackers:
+                if enemy.alive and (def_pos - enemy.pos).length() < 100:
+                    target = enemy
+                    break # Just target the first one in range
+            
+            if target:
+                bullets.append(Bullet(def_pos, target))
         last_shot_time = current_time
 
-    if not attacker.alive:
-        # For testing: respawn attacker when it reaches the end or dies
-        attacker = Attacker(ROAD_PATH)
+    # Round progression
+    if not attackers and spawn_queue == 0:
+        # Start next round
+        if current_round <= 40:
+            spawn_queue = current_round
+        elif current_round <= 60:
+            spawn_queue = 40
+            current_attacker_health *= 1.5
+        elif current_round <= 80:
+            spawn_queue = 50
+            current_attacker_health *= 50
+        
+        current_round += 1
+        # Optional: reset last_spawn_time to trigger immediate first spawn
+        last_spawn_time = pg.time.get_ticks() - spawn_delay
 
     if dragging:
         circle_def.x = pg.mouse.get_pos()[0] - drag_offset.x
@@ -129,14 +170,17 @@ while running:
     for def_pos in Defenders:
         draw_range(screen, def_pos)
         Defend_1(screen, red, def_pos)
-    
+    # Draw Health and Round
+    draw_text(health_p, 10, 5,font,screen)
+    draw_text(rounds, 200, 5,font,screen)
     # Draw bullets
     for bullet in bullets:
         bullet.draw(screen)
         
     Defendgui(1468, 0, 200, 1024, screen, brown, red, circle_def)
-    # Draw the follower
-    attacker.draw(screen, zombie_walking_image)
+    # Draw all attackers
+    for attacker in attackers:
+        attacker.draw(screen, zombie_walking_image)
 
     pg.display.update()
     clock.tick(60)
