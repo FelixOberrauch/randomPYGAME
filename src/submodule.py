@@ -70,7 +70,8 @@ class Attacker:
     def draw(self, screen, image):
         rect = image.get_rect(center=(int(self.pos.x), int(self.pos.y)))
         screen.blit(image, rect)
-
+    
+    
 class Bullet:
     def __init__(self, start_pos, target_obj):
         self.pos = pg.Vector2(start_pos)

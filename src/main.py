@@ -72,7 +72,8 @@ brown = (181, 122, 0)
 health_pl = 200
 attackers = []
 spawn_queue = 0
-current_round = 1
+current_round = 0
+round_start = False
 current_attacker_health = 20
 last_spawn_time = 0
 spawn_delay = 100  # 100 milliseconds between spawns
@@ -85,11 +86,10 @@ running = True
 zombie_walking_path = os.path.join(script_dir, "assets", "zombie_walking.png")
 zombie_walking_image = pg.image.load(zombie_walking_path).convert_alpha()
 zombie_walking_image = pg.transform.scale(zombie_walking_image, (80, 80))
+i = 2
 
 # ___Text___
 font = pg.font.SysFont('arial', 24)
-rounds = f"Round: {current_round}"
-health_p = f"Health: {health_pl}"
 
 while running:
     # ___EVENTS___
@@ -117,7 +117,7 @@ while running:
             attackers.append(Attacker(ROAD_PATH, health=current_attacker_health))
             spawn_queue -= 1
             last_spawn_time = current_time
-
+    
     # Update attackers
     for attacker in attackers[:]:
         attacker.update()
@@ -147,6 +147,10 @@ while running:
 
     # Round progression
     if not attackers and spawn_queue == 0:
+        if i == 0:
+            current_round += 1
+        else:
+            i -= 1
         # Start next round
         if current_round <= 40:
             spawn_queue = current_round
@@ -158,8 +162,7 @@ while running:
             current_attacker_health *= 50 
         # Optional: reset last_spawn_time to trigger immediate first spawn
         last_spawn_time = pg.time.get_ticks() - spawn_delay
-        current_round += 1
-
+        
     if dragging:
         circle_def.x = pg.mouse.get_pos()[0] - drag_offset.x
         circle_def.y = pg.mouse.get_pos()[1] - drag_offset.y
@@ -171,8 +174,8 @@ while running:
         draw_range(screen, def_pos)
         Defend_1(screen, red, def_pos)
     # Draw Health and Round
-    draw_text(health_p, 10, 5,font,screen)
-    draw_text(rounds, 200, 5,font,screen)
+    draw_text(f"Health: {health_pl}", 10, 5,font,screen)
+    draw_text(f"Round: {current_round}", 200, 5,font,screen)
     # Draw bullets
     for bullet in bullets:
         bullet.draw(screen)
