@@ -124,15 +124,15 @@ while running:
     # Update attackers
     for attacker in attackers[:]:
         attacker.update()
+        if attacker.current_point_idx >= len(attacker.path):
+            health_pl -= 2
+            attacker.alive = False
         if not attacker.alive:
             attackers.remove(attacker)
     
     # Update bullets
     for bullet in bullets[:]:
         bullet.update()
-        if attacker.current_point_idx >= len(attacker.path):
-            health_pl -= 2
-            attacker.alive = False
         if not bullet.active:
             bullets.remove(bullet)
             
@@ -158,7 +158,9 @@ while running:
         else:
             i -= 1
         # Start next round
-        if current_round <= 40:
+        if current_round > 5:
+            current_attacker_health * 0.3
+        elif current_round <= 40:
             spawn_queue = current_round
         elif current_round <= 60:
             spawn_queue = 40

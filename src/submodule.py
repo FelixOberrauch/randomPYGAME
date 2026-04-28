@@ -78,7 +78,7 @@ class Attacker:
  
     def damage_player(self, player):
         if not self.has_damaged_player and self.current_point_idx >= len(self.path):
-            player.health -= 2
+            player.health -= self.health
             self.has_damaged_player = True
             self.alive = False
     
